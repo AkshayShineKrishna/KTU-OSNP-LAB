@@ -83,12 +83,29 @@ float calculateAvgTurnAroundTime()
     return (avg);
 }
 
+void displayProcessSchedule()
+{
+    printf("\nProcess Schedule : \n\n");
+    for (int i = 0; i < n; i++)
+    {
+        if (i != n - 1)
+        {
+            printf("%s ->", p[i].pid);
+        }
+        else{
+            printf("%s",p[i].pid);
+        }
+    }
+    printf("\n");
+}
+
 int main()
 {
     printf("Enter the number of process : ");
     scanf("%d", &n);
     readProcessDetails();
     displayProcessDetails();
+    displayProcessSchedule();
     float avgWt = calculateAvgWaitingTime();
     float avgTat = calculateAvgTurnAroundTime();
     printf("\nAverage Waiting Time : %.2f ms", avgWt);
