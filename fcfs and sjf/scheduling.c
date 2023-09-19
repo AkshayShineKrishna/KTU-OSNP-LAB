@@ -5,9 +5,7 @@ int n;
 struct process
 {
     char pid[5];
-    int bt;
-    int tat;
-    int wt;
+    int bt, tat, wt;
 } p[10];
 
 void waitingTime()
@@ -28,29 +26,27 @@ void turnAroundTime()
 
 void readProcessDetails()
 {
+    printf("Enter the number of processes: ");
+    scanf("%d", &n);
+
     for (int i = 0; i < n; i++)
     {
-        printf("Enter the details of process [ %d / %d ] : \n", i + 1, n);
-        printf("Enter the PID : ");
+        printf("\nEnter the details of process %d:\n", i + 1);
+        printf("PID: ");
         scanf("%s", p[i].pid);
-        printf("Enter the BURST TIME : ");
+        printf("Burst Time: ");
         scanf("%d", &p[i].bt);
-        printf("-----------------------\n");
     }
 }
 
 void displayProcessDetails()
 {
-    printf("\n\n");
+    printf("\n\nProcess Details:\n");
+    printf("| %-5s | %-10s | %-12s | %-15s |\n", "PID", "Burst Time", "Waiting Time", "Turnaround Time");
+    printf("|-------|------------|--------------|-----------------|\n");
     for (int i = 0; i < n; i++)
     {
-        printf("Details of process %d : \n", i + 1);
-        printf("-----------------------\n");
-        printf("pid : %s \n", p[i].pid);
-        printf("burst time : %d \n", p[i].bt);
-        printf("waiting time : %d \n", p[i].wt);
-        printf("turn around time : %d \n", p[i].tat);
-        printf("-----------------------\n");
+        printf("| %-5s | %-10d | %-12d | %-15d |\n", p[i].pid, p[i].bt, p[i].wt, p[i].tat);
     }
 }
 
@@ -62,32 +58,69 @@ float calculateAvgWaitingTime()
         sum += p[i].wt;
     }
     avg = sum / n;
-    return (avg);
+    return avg;
 }
 
 float calculateAvgTurnAroundTime()
 {
-    float avg = 0, sum = 0;
+    float sum = 0, avg = 0;
     for (int i = 0; i < n; i++)
     {
         sum += p[i].tat;
     }
     avg = sum / n;
-    return (avg);
+    return avg;
 }
 
-void displayProcessSchedule()
+int calculateResultantStringLength()
 {
-    printf("\nProcess Schedule : \n\n");
+
+    int totalLength = 0;
     for (int i = 0; i < n; i++)
     {
-        if (i != n - 1)
+        totalLength += p[i].bt + 3;
+    }
+
+    return (totalLength + 1);
+}
+
+void drawLine()
+{
+    int resultant = calculateResultantStringLength();
+    for (int i = 0; i < resultant; i++)
+    {
+        printf("-");
+    }
+}
+
+void ganttChart()
+{
+    int spaceLength;
+    printf("\nGantt Chart :\n\n");
+    drawLine();
+    printf("\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("| %-*s ", p[i].bt, p[i].pid);
+    }
+    printf("|\n");
+    drawLine();
+    printf("\n0");
+    for (int i = 0; i < n; i++)
+    {
+        if (p[i].tat >= 10)
         {
-            printf("%s ->", p[i].pid);
+            spaceLength = p[i].bt + 1;
         }
-        else{
-            printf("%s",p[i].pid);
+        else
+        {
+            spaceLength = p[i].bt + 2;
         }
+        for (int j = 0; j < spaceLength; j++)
+        {
+            printf(" ");
+        }
+        printf("%d", p[i].tat);
     }
     printf("\n");
 }
@@ -108,41 +141,45 @@ void sortProcess()
     }
 }
 
-void fcfs(){
-    printf("\n\n FCFS : \n\n");
+void initializeProcess()
+{
     p[0].tat = p[0].bt;
     p[0].wt = 0;
-    turnAroundTime();
-    waitingTime();
-    displayProcessDetails();
-    displayProcessSchedule();
-    float avgWt = calculateAvgWaitingTime();
-    float avgTat = calculateAvgTurnAroundTime();
-    printf("\nAverage Waiting Time : %.2f ms", avgWt);
-    printf("\nAverage Turn Around Time : %.2f ms", avgTat);
 }
 
-void sjf() {
-    printf("\n\nSJF : \n\n");
-    sortProcess();
-    p[0].tat = p[0].bt;
-    p[0].wt = 0;
+void fcfs()
+{
+    printf("\nFirst-Come-First-Served Scheduling (FCFS) :");
+    initializeProcess();
     turnAroundTime();
     waitingTime();
     displayProcessDetails();
-    displayProcessSchedule();
     float avgWt = calculateAvgWaitingTime();
     float avgTat = calculateAvgTurnAroundTime();
-    printf("\nAverage Waiting Time : %.2f ms", avgWt);
-    printf("\nAverage Turn Around Time : %.2f ms", avgTat);
+    printf("\nAverage Waiting Time: %.2f ms", avgWt);
+    printf("\nAverage Turnaround Time: %.2f ms\n", avgTat);
+}
+
+void sjf()
+{
+    printf("\nShortest Job First Scheduling (SJF) :");
+    sortProcess();
+    initializeProcess();
+    turnAroundTime();
+    waitingTime();
+    displayProcessDetails();
+    float avgWt = calculateAvgWaitingTime();
+    float avgTat = calculateAvgTurnAroundTime();
+    printf("\nAverage Waiting Time: %.2f ms", avgWt);
+    printf("\nAverage Turnaround Time: %.2f ms\n", avgTat);
 }
 
 int main()
 {
-    printf("Enter the number of process : ");
-    scanf("%d", &n);
     readProcessDetails();
     fcfs();
+    ganttChart();
     sjf();
+    ganttChart();
     return 0;
 }
