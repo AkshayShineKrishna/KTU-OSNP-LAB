@@ -5,7 +5,7 @@ int n;
 struct process
 {
     char pid[5];
-    int bt, tat, wt;
+    int bt, tat, wt, priority;
 } p[10];
 
 void waitingTime()
@@ -36,17 +36,6 @@ void readProcessDetails()
         scanf("%s", p[i].pid);
         printf("Burst Time: ");
         scanf("%d", &p[i].bt);
-    }
-}
-
-void displayProcessDetails()
-{
-    printf("\n\nProcess Details:\n");
-    printf("| %-5s | %-10s | %-12s | %-15s |\n", "PID", "Burst Time", "Waiting Time", "Turnaround Time");
-    printf("|-------|------------|--------------|-----------------|\n");
-    for (int i = 0; i < n; i++)
-    {
-        printf("| %-5s | %-10d | %-12d | %-15d |\n", p[i].pid, p[i].bt, p[i].wt, p[i].tat);
     }
 }
 
@@ -153,11 +142,11 @@ void fcfs()
     initializeProcess();
     turnAroundTime();
     waitingTime();
-    displayProcessDetails();
     float avgWt = calculateAvgWaitingTime();
     float avgTat = calculateAvgTurnAroundTime();
     printf("\nAverage Waiting Time: %.2f ms", avgWt);
     printf("\nAverage Turnaround Time: %.2f ms\n", avgTat);
+    ganttChart();
 }
 
 void sjf()
@@ -167,19 +156,56 @@ void sjf()
     initializeProcess();
     turnAroundTime();
     waitingTime();
-    displayProcessDetails();
     float avgWt = calculateAvgWaitingTime();
     float avgTat = calculateAvgTurnAroundTime();
     printf("\nAverage Waiting Time: %.2f ms", avgWt);
     printf("\nAverage Turnaround Time: %.2f ms\n", avgTat);
+    ganttChart();
+}
+
+void sortPriority()
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (p[j].priority > p[j + 1].priority)
+            {
+                struct process temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void readPriority() {
+    printf("\nEnter the priority value for the processes : \n");
+    for(int i=0;i<n;i++){
+        printf("PID (%s) : ",p[i].pid);
+        scanf("%d",&p[i].priority);
+    }
+}
+
+void prioritySchedule() {
+    printf("\nPriority Schedule (PS) :");
+    readPriority();
+    sortPriority();
+    initializeProcess();
+    turnAroundTime();
+    waitingTime();
+    float avgWt = calculateAvgWaitingTime();
+    float avgTat = calculateAvgTurnAroundTime();
+    printf("\nAverage Waiting Time: %.2f ms", avgWt);
+    printf("\nAverage Turnaround Time: %.2f ms\n", avgTat);
+    ganttChart();
 }
 
 int main()
 {
     readProcessDetails();
     fcfs();
-    ganttChart();
     sjf();
-    ganttChart();
+    prioritySchedule();
     return 0;
 }
