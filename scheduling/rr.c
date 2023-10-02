@@ -36,6 +36,7 @@ void readProcessDetails()
 
 void roundRobin()
 {
+    printf("\nRound Robin (RR) :");
     queueSize = 0;
 
     // varibale to store no. of completed processes
