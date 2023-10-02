@@ -1,2 +1,4 @@
-#auto generated output folder
+# auto generated output folder
 /scheduling/output
+# vs code settings
+.vscode
