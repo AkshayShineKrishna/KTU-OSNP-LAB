@@ -150,8 +150,8 @@ void ganttChart()
     printf("\n0");
     for (int i = 0; i < queueSize; i++)
     {
-        /* Note this step is not necessary just burst time as spacelenth is enough
-           done just for proper spacing (beautification) */
+        /* Note : this step is not necessary, just burst time as spacelenth is enough.
+           This is done just for proper spacing (beautification) */
         if (q[i].tat >= 10)
         {
             // if tat is 2 digits, then the first digit will be placed just before the divider
