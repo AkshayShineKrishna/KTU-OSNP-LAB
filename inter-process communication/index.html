@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculation</title>
+    <link rel="stylesheet" href="mystyles.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="main-container">
+        <h1>GRADE CALCULATOR</h1>
+        <form id="gradeForm">
+            <div class="details-container">
+                <h2>Student Details</h2>
+                <div>
+                    <label for="name">Name :</label>
+                    <input type="text" id="name">
+                </div>
+                <div>
+                    <label for="class">Class :</label>
+                    <input type="text" id="class">
+                </div>
+                <div>
+                    <label for="roll-no">Roll no :</label>
+                    <input type="text" id="roll-no">
+                </div>
+
+            </div>
+            <div class="marks-container">
+                <h2>Marks</h2>
+                <div>
+                    <div class="mark1">
+                        <label for="OS">OS :</label>
+                        <input type="number" max="100" min="0" id="OS">
+                    </div>
+                    <div class="mark2">
+                        <label for="WAD">WAD :</label>
+                        <input type="number" max="100" min="0" id="WAD">
+                    </div>
+                    <div class="mark3">
+                        <label for="DCN">DCN :</label>
+                        <input type="number" max="100" min="0" id="DCN">
+                    </div>
+                    <div class="mark4">
+                        <label for="FLAT">FLAT :</label>
+                        <input type="number" max="100" min="0" id="FLAT">
+                    </div>
+                    <div class="mark5">
+                        <label for="MSE">MSE :</label>
+                        <input type="number" max="100" min="0" id="MSE"> <br>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="button" value="Next" onclick="getDetails()">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
