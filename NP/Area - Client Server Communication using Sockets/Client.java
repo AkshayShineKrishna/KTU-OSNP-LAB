@@ -9,9 +9,7 @@ class Client {
         PrintWriter p;
         try {
             Socket s = new Socket("localhost", 8000);
-            while (true)
-            {
-
+            while (true) {
                 b = new BufferedReader(new InputStreamReader(System.in));
                 b1 = new BufferedReader(new InputStreamReader(s.getInputStream()));
                 p = new PrintWriter(s.getOutputStream(), true);
@@ -25,7 +23,7 @@ class Client {
                 System.out.println("Area of circle from server : " + s2);
             }
         } catch (Exception e) {
-            
+
             System.out.println(e);
         }
     }

@@ -11,9 +11,7 @@ class Server {
             Socket c;
             ServerSocket s = new ServerSocket(8000);
             c = s.accept();
-            while (true)
-
-            {
+            while (true) {
                 b = new BufferedReader(new InputStreamReader(c.getInputStream()));
                 p = new PrintWriter(c.getOutputStream(), true);
                 s1 = b.readLine();
