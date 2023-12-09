@@ -3,13 +3,11 @@ import java.net.*;
 
 class Server {
     public static void main(String args[]) {
-        BufferedReader b2 = new BufferedReader(new InputStreamReader(System.in));
         String s[] = new String[8];
         int sws = 4, ptr = 0;
         try {
             ServerSocket s1 = new ServerSocket(8000);
             Socket c = s1.accept();
-            String c1;
             while (true) {
                 BufferedReader b = new BufferedReader(new InputStreamReader(c.getInputStream()));
                 String str = b.readLine();
