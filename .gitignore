@@ -1,8 +1,6 @@
 # auto generated output folder
-/scheduling/output
+OS/scheduling/output
 /memory management techniques/output
 # vs code settings
 .vscode
 
-#incomplete
-/client-server-connection
