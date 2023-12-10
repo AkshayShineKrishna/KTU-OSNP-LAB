@@ -23,7 +23,6 @@ class Client {
                 System.out.println("Area of circle from server : " + s2);
             }
         } catch (Exception e) {
-
             System.out.println(e);
         }
     }
