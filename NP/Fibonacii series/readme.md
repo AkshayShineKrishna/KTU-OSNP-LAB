@@ -2,29 +2,30 @@
 
 ## Server.java
 ```
-\KTU-OSNP-LAB\NP\Fibonacii series>java Server
+KTU-OSNP-LAB\NP\Fibonacii series>javac Server.java
 
-Fibonacii Series :
+C:\Users\ASUS\Downloads\KTU-OSNP-LAB\NP\Fibonacii series>java Server
+Fibonacii Series processed successfully
+Fibonacii Series processed successfully
 
-0, 1, 1, 2, 3
-Fibonacii Series :
-
-0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 Server Stopped
 ```
 
 ## Client.java
 
 ```
-\KTU-OSNP-LAB\NP\Fibonacii series>java Client
-Enter a number :
-5
-Server : Fibonacii Series processed successfully
-Enter a number :
-10
-Server : Fibonacii Series processed successfully
-Enter a number :
-exit
-Server : exit
+KTU-OSNP-LAB\NP\Fibonacii series>java Client
+
+Enter a number : 5
+
+Fibonacii Series :
+
+0, 1, 1, 2, 3,
+Enter a number : 10
+
+Fibonacii Series :
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34,
+Enter a number : EXit
 Client Stopped
 ```

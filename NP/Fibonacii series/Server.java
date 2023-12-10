@@ -15,22 +15,21 @@ public class Server {
                 String input = b1.readLine();
                 if (input.compareToIgnoreCase("exit") == 0) {
                     System.out.println("\nServer Stopped");
-                    p.println(input);
                     System.exit(0);
                 }
                 int first = 0;
                 int second = 1;
                 int third = 0;
                 int num = Integer.parseInt(input);
-                System.out.println("\nFibonacii Series : \n");
-                System.out.print(first + ", " + second); 
+                String first_num = first +", " + second;
+                p.println(first_num); 
                 for(int i = 0 ; i < num - 2 ; i++){
                     third = first + second;
-                    System.out.print(", " + third);
                     first = second;
                     second = third;
+                    p.println(third);
                 }
-                p.println("Fibonacii Series processed successfully");
+                System.out.println("Fibonacii Series processed successfully");
                 
             }
 

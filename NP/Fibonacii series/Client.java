@@ -11,14 +11,17 @@ public class Client {
             b2 = new BufferedReader(new InputStreamReader(s.getInputStream()));
             p = new PrintWriter(s.getOutputStream(),true);
             while (true) {
-                System.out.println("Enter a number : ");
+                System.out.print("\nEnter a number : ");
                 String num = b1.readLine();
                 p.println(num);
-                String msg = b2.readLine();
-                System.out.println("Server : " + msg);
-                if (msg.compareToIgnoreCase("exit") == 0) {
+                if (num.compareToIgnoreCase("exit") == 0) {
                     System.out.println("Client Stopped");
                     System.exit(0);
+                }
+                System.out.println("\nFibonacii Series : \n");
+                for(int i = 0 ; i < Integer.parseInt(num) - 1 ; i++){
+                        String fib = b2.readLine();
+                        System.out.print(fib + ", ");
                 }
             }
         } catch (Exception e) {
