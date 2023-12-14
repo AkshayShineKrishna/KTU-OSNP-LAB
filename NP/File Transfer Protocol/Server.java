@@ -21,16 +21,23 @@ public class Server {
                     System.exit(0);
                 }
                 // Read all lines from the file and add them to a list
-                List<String> lines = Files.readAllLines(Paths.get(fileName));
-                // send no of lines to client
-                p.println(lines.size());
-                // Send each line to client
-                for (String line : lines) {
-                    p.println(line);
+                try {
+                    List<String> lines = Files.readAllLines(Paths.get(fileName));
+                    // send no of lines to client
+                    p.println(lines.size());
+                    // Send each line to client
+                    for (String line : lines) {
+                        p.println(line);
+                    }
+                    // clear the list after sending all lines
+                    lines.clear();
+                    System.out.println("Sent " + fileName + " successfully");
+                } catch (Exception e) {
+                    System.out.println("File : " + fileName + "not found in server");
+                    p.println("1");
+                    p.println(fileName + "not found");
                 }
-                // clear the list after sending all lines
-                lines.clear();
-                System.out.println("Sent " + fileName + " successfully");
+
             }
         } catch (Exception e) {
             System.out.println(e);
