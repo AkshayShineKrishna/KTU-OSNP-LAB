@@ -33,9 +33,9 @@ public class Server {
                     lines.clear();
                     System.out.println("Sent " + fileName + " successfully");
                 } catch (Exception e) {
-                    System.out.println("File : " + fileName + "not found in server");
+                    System.out.println("File : '" + fileName + "' not found in server");
                     p.println("1");
-                    p.println(fileName + "not found");
+                    p.println(fileName + " not found");
                 }
 
             }
